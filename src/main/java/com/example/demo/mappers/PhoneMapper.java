@@ -18,7 +18,7 @@ private ModelMapper modelMapper;
 		return this.modelMapper.map(phone, PhoneDTO.class);
 	}
 	
-	public phone mapToDuck(PhoneDTO phoneDTO) {
+	public phone mapToPhone(PhoneDTO phoneDTO) {
 		return this.modelMapper.map(phoneDTO, phone.class);
 	}
 }
