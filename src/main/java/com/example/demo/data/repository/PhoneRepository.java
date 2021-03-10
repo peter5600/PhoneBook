@@ -18,8 +18,8 @@ public interface PhoneRepository extends JpaRepository<Phone, Integer>{
 	public List<Phone> getAllPhoneNumbers();
 	
 	@Query("SELECT * FROM phone_book WHERE phone_book.first_name = ?1 and phone_book.last_name = ?1")
-	public Phone getPhoneNumberByName();
+	public Phone getPhoneNumberByName(String first_name, String last_name);
 	
 	@Query("SELECT * FROM phone_book WHERE id = ?1")
-	public Phone getPhoneNumberByID();
+	public Phone getPhoneNumberByID(int id);
 }
