@@ -51,10 +51,8 @@ public class PhoneBookController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<PhoneDTO> createDuck(@Valid @RequestBody PhoneBook phoneBook) {
-		// A Duck is retrieved from the incoming request body (the conversion from json to duck is automatic)
-		// - `@RequestBody Duck duck` makes this happen
-		// - @Valid is used to employ our models validation on the incoming request
+	public ResponseEntity<PhoneDTO> createPhone(@Valid @RequestBody PhoneBook phoneBook) {
+
 		
 		PhoneDTO newPhone = phoneBookService.createDuck(phoneBook);
 		
