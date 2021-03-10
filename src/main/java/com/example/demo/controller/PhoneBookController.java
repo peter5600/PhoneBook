@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.PhoneBookDTO;
 import com.example.demo.model.Phone;
 import com.example.demo.services.PhoneBookService;
+
+import javassist.NotFoundException;
 
 
 
@@ -47,7 +50,7 @@ public class PhoneBookController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<PhoneBookDTO> getContactById(@PathVariable("id") int id) {
+	public ResponseEntity<PhoneBookDTO> getContactById(@PathVariable("id") int id) throws NotFoundException {
 	
 		PhoneBookDTO phone = phoneBookService.readById(id);
 		
@@ -76,14 +79,14 @@ public class PhoneBookController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<PhoneBookDTO> updatePhone(@PathVariable("id") int id,
-										   @RequestBody Phone phone) {
+										   @RequestBody Phone phone) throws EntityNotFoundException, NotFoundException {
 		PhoneBookDTO updatedPhone = phoneBookService.updatePhone(id, phone);
 		
 		return new ResponseEntity<PhoneBookDTO>(updatedPhone, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> deletePhone(@PathVariable("id") int id) {		
+	public ResponseEntity<Boolean> deletePhone(@PathVariable("id") int id) throws NotFoundException {		
 		return new ResponseEntity<Boolean>(phoneBookService.deletePhone(id), HttpStatus.OK);
 	}
 }
