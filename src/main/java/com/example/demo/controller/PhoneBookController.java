@@ -49,24 +49,24 @@ public class PhoneBookController {
 	@GetMapping("/{id}")
 	public ResponseEntity<PhoneBookDTO> getContactById(@PathVariable("id") int id) {
 	
-		PhoneDTO phone = phoneBookService.readById(id);
+		PhoneBookDTO phone = phoneBookService.readById(id);
 		
 		
 		return new ResponseEntity<PhoneBookDTO>(phone, HttpStatus.OK);
 	}
 	
 	@GetMapping("/name/{name}")
-	public ResponseEntity<PhoneBookDTO> getPhoneByName(@PathVariable("name") String name) {
-		PhoneDTO phone = phoneBookService.readByName(name);
+	public ResponseEntity<PhoneBookDTO> getPhoneByName(@PathVariable("name") String fname, String lname) {
+		PhoneBookDTO phone = phoneBookService.readByName(fname, lname);
 		
-		return new ResponseEntity<PhoneDTO>(phone, HttpStatus.OK);
+		return new ResponseEntity<PhoneBookDTO>(phone, HttpStatus.OK);
 	}
 	
 	@PostMapping
 	public ResponseEntity<PhoneBookDTO> createPhone(@Valid @RequestBody Phone phone) {
 
 		
-		PhoneDTO newPhone = phoneBookService.createPhone(phone);
+		PhoneBookDTO newPhone = phoneBookService.createPhone(phone);
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Location", String.valueOf(newPhone.getId()));
@@ -77,7 +77,7 @@ public class PhoneBookController {
 	@PutMapping("/{id}")
 	public ResponseEntity<PhoneBookDTO> updatePhone(@PathVariable("id") int id,
 										   @RequestBody Phone phone) {
-		PhoneDTO updatedPhone = phoneBookService.updatePhone(id, phone);
+		PhoneBookDTO updatedPhone = phoneBookService.updatePhone(id, phone);
 		
 		return new ResponseEntity<PhoneBookDTO>(updatedPhone, HttpStatus.OK);
 	}
