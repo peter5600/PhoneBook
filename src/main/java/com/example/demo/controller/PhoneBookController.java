@@ -56,7 +56,7 @@ public class PhoneBookController {
 	}
 	
 	@GetMapping("/name/{name}")
-	public ResponseEntity<PhoneBookDTO> getDuckByName(@PathVariable("name") String name) {
+	public ResponseEntity<PhoneBookDTO> getPhoneByName(@PathVariable("name") String name) {
 		PhoneDTO phone = phoneBookService.readByName(name);
 		
 		return new ResponseEntity<PhoneDTO>(phone, HttpStatus.OK);
